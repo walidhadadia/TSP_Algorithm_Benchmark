@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulation — Comparaison d'Algorithmes</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>Comparaison d'Algorithmes de Graphes</h1>
+    <span class="header-sub">TSP — Problème du voyageur de commerce</span>
+  </div>
+  <nav class="main-nav">
+    <a href="/" class="nav-link">1 · Graphe</a>
+    <a href="/simulation" class="nav-link active">2 · Simulation</a>
+    <a href="/resultats" class="nav-link">3 · Résultats</a>
+  </nav>
+</header>
+
+<main class="page">
+
+  <section class="sim-bar">
+    <button id="btn-play" class="btn-cta">▶ Lancer la simulation</button>
+    <button id="btn-reset-sim" class="btn-danger-solid" disabled>⏹ Réinitialiser</button>
+
+    <label class="toggle-wrap">
+      <input type="checkbox" id="toggle-directed-sim">
+      <span class="toggle-slider"></span>
+      <span class="toggle-text">Dirigé</span>
+    </label>
+
+    <span id="sim-status" class="sim-status"></span>
+    <span class="sim-graph-info" id="sim-graph-info"></span>
+  </section>
+
+  <section class="algo-section">
+
+    <div class="algo-panel" id="panel-nn" style="--accent:#818cf8">
+      <div class="algo-header">
+        <div class="algo-title-wrap">
+          <div><h2>Plus Proche Voisin</h2><span class="badge">Glouton · O(n²)</span></div>
+        </div>
+        <div class="algo-live">
+          <span class="live-dist" id="live-nn">—</span>
+          <span class="live-ts" id="ts-nn">+0.0s</span>
+        </div>
+      </div>
+      <div class="algo-canvas-wrap"><canvas class="algo-canvas" id="canvas-nn"></canvas></div>
+      <div class="algo-stats">
+        <div class="stat-row">
+          <div class="stat"><label>Calcul</label><strong id="time-nn">—</strong></div>
+          <div class="stat"><label>Distance</label><strong id="dist-nn">—</strong></div>
+          <div class="stat"><label>Étape</label><strong id="step-nn">0 / 0</strong></div>
+        </div>
+        <div class="algo-desc" id="desc-nn">En attente de simulation…</div>
+        <div class="algo-valid hidden" id="valid-nn"></div>
+      </div>
+    </div>
+
+    <div class="algo-panel" id="panel-2opt" style="--accent:#34d399">
+      <div class="algo-header">
+        <div class="algo-title-wrap">
+          <div><h2>2-Opt</h2><span class="badge">Amélioration locale</span></div>
+        </div>
+        <div class="algo-live">
+          <span class="live-dist" id="live-2opt">—</span>
+          <span class="live-ts" id="ts-2opt">+0.0s</span>
+        </div>
+      </div>
+      <div class="algo-canvas-wrap"><canvas class="algo-canvas" id="canvas-2opt"></canvas></div>
+      <div class="algo-stats">
+        <div class="stat-row">
+          <div class="stat"><label>Calcul</label><strong id="time-2opt">—</strong></div>
+          <div class="stat"><label>Distance</label><strong id="dist-2opt">—</strong></div>
+          <div class="stat"><label>Étape</label><strong id="step-2opt">0 / 0</strong></div>
+        </div>
+        <div class="algo-desc" id="desc-2opt">En attente de simulation…</div>
+        <div class="algo-valid hidden" id="valid-2opt"></div>
+      </div>
+    </div>
+
+    <div class="algo-panel" id="panel-ga" style="--accent:#fbbf24">
+      <div class="algo-header">
+        <div class="algo-title-wrap">
+          <div><h2>Algorithme Génétique</h2><span class="badge">Méta-heuristique</span></div>
+        </div>
+        <div class="algo-live">
+          <span class="live-dist" id="live-ga">—</span>
+          <span class="live-ts" id="ts-ga">+0.0s</span>
+        </div>
+      </div>
+      <div class="algo-canvas-wrap"><canvas class="algo-canvas" id="canvas-ga"></canvas></div>
+      <div class="algo-stats">
+        <div class="stat-row">
+          <div class="stat"><label>Calcul</label><strong id="time-ga">—</strong></div>
+          <div class="stat"><label>Distance</label><strong id="dist-ga">—</strong></div>
+          <div class="stat"><label>Étape</label><strong id="step-ga">0 / 0</strong></div>
+        </div>
+        <div class="algo-desc" id="desc-ga">En attente de simulation…</div>
+        <div class="algo-valid hidden" id="valid-ga"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="empty-graph-notice hidden" id="empty-notice">
+    <p>Aucun graphe défini. <a href="/">← Retournez à l'éditeur</a> pour créer un graphe.</p>
+  </section>
+
+</main>
+
+<script src="/static/common.js"></script>
+<script src="/static/simulation.js"></script>
+</body>
+</html>

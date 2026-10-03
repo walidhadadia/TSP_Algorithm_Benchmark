@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Résultats — Comparaison d'Algorithmes</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>Comparaison d'Algorithmes de Graphes</h1>
+    <span class="header-sub">TSP — Problème du voyageur de commerce</span>
+  </div>
+  <nav class="main-nav">
+    <a href="/" class="nav-link">1 · Graphe</a>
+    <a href="/simulation" class="nav-link">2 · Simulation</a>
+    <a href="/resultats" class="nav-link active">3 · Résultats</a>
+  </nav>
+</header>
+
+<main class="page page-padded">
+
+  <!-- Comparatif de la dernière simulation -->
+  <section class="results-block">
+    <div class="history-header">
+      <h3 class="block-title">Dernière simulation</h3>
+      <div class="sort-control">
+        <span class="sort-label">Trier par</span>
+        <select id="select-sort" class="select-styled">
+          <option value="none">Ordre par défaut</option>
+          <option value="distance">Distance (courte → longue)</option>
+          <option value="time">Temps (rapide → lent)</option>
+        </select>
+      </div>
+    </div>
+    <div id="last-sim-cards" class="compare-cards"></div>
+    <p id="last-sim-empty" class="muted-msg hidden">
+      Aucune simulation récente. <a href="/simulation">Lancez une simulation →</a>
+    </p>
+  </section>
+
+  <!-- Historique complet (SQLite) -->
+  <section class="results-block">
+    <div class="history-header">
+      <h3 class="block-title">Historique (base de données)</h3>
+      <button id="btn-refresh" class="btn-ghost">↻ Actualiser</button>
+    </div>
+    <div class="table-wrap">
+      <table id="results-table" class="hidden">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Graphe</th>
+            <th class="th-nn">Plus Proche Voisin</th>
+            <th class="th-2opt">2-Opt</th>
+            <th class="th-ga">Alg. Génétique</th>
+          </tr>
+        </thead>
+        <tbody id="results-body"></tbody>
+      </table>
+      <p id="results-empty" class="muted-msg">Aucun résultat enregistré.</p>
+    </div>
+  </section>
+
+</main>
+
+<script src="/static/common.js"></script>
+<script src="/static/resultats.js"></script>
+</body>
+</html>

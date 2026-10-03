@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Éditeur de graphe — Comparaison d'Algorithmes</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>Comparaison d'Algorithmes de Graphes</h1>
+    <span class="header-sub">TSP — Problème du voyageur de commerce</span>
+  </div>
+  <nav class="main-nav">
+    <a href="/" class="nav-link active">1 · Graphe</a>
+    <a href="/simulation" class="nav-link">2 · Simulation</a>
+    <a href="/resultats" class="nav-link">3 · Résultats</a>
+  </nav>
+</header>
+
+<main class="page">
+
+  <section class="editor-section">
+    <div class="editor-toolbar">
+      <div class="toolbar-group">
+        <button class="tool-btn active" data-mode="select">⬡ Sélectionner / Déplacer</button>
+        <button class="tool-btn" data-mode="addNode">＋ Nœud</button>
+        <button class="tool-btn" data-mode="addEdge">↗ Arête</button>
+        <button class="tool-btn" data-mode="editWeight">✎ Modifier poids</button>
+        <button class="tool-btn" data-mode="delete">✕ Supprimer</button>
+      </div>
+      <div class="toolbar-group">
+        <select id="select-builtin" class="select-styled" title="Modèle de graphe">
+          <option value="1">Graphe 1 (6 nœuds)</option>
+          <option value="2">Graphe 2 (5 nœuds)</option>
+        </select>
+        <label class="toggle-wrap">
+          <input type="checkbox" id="toggle-directed">
+          <span class="toggle-slider"></span>
+          <span class="toggle-text">Dirigé</span>
+        </label>
+        <div class="zoom-group">
+          <button id="btn-zoom-out" class="btn-ghost zoom-btn" title="Dézoomer">−</button>
+          <span id="zoom-level" class="zoom-level">100%</span>
+          <button id="btn-zoom-in" class="btn-ghost zoom-btn" title="Zoomer">+</button>
+        </div>
+        <button id="btn-recenter" class="btn-ghost" title="Recentrer et ajuster">⊙ Ajuster</button>
+        <button id="btn-clear" class="btn-ghost btn-danger">🗑 Effacer</button>
+      </div>
+    </div>
+
+    <div class="toolbar-group endpoints-bar">
+      <span class="endpoint-pill endpoint-start">● Nœud de départ</span>
+      <select id="select-start" class="select-styled"></select>
+      <span class="endpoint-hint mode-closed" id="endpoint-mode">Cycle fermé : visite tous les nœuds et revient au départ</span>
+    </div>
+
+    <div class="editor-wrap">
+      <canvas id="editor-canvas"></canvas>
+    </div>
+
+    <div id="hint-bar" class="hint-bar">
+      Glissez un nœud pour le déplacer · glissez le fond pour vous déplacer dans le graphe.
+    </div>
+  </section>
+
+  <section class="action-bar">
+    <div class="action-info">
+      <span id="info-nodes">0 nœuds</span> · <span id="info-edges">0 arêtes</span>
+    </div>
+    <div class="action-buttons">
+      <button id="btn-save-graph" class="btn-outline">💾 Sauvegarder</button>
+      <select id="select-load-graph" class="select-styled">
+        <option value="">Charger un graphe…</option>
+      </select>
+      <a href="/simulation" class="btn-cta">Lancer la simulation →</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- Modale poids d'arête -->
+<div id="modal-edge" class="modal-backdrop hidden">
+  <div class="modal">
+    <h3 id="modal-edge-title">Poids de l'arête</h3>
+    <label>
+      Valeur
+      <input type="number" id="modal-weight" value="10" min="0.1" step="0.1">
+    </label>
+    <div class="modal-actions">
+      <button id="modal-edge-confirm" class="btn-primary">Confirmer</button>
+      <button id="modal-edge-cancel"  class="btn-ghost">Annuler</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modale sauvegarde -->
+<div id="modal-save" class="modal-backdrop hidden">
+  <div class="modal">
+    <h3>Sauvegarder le graphe</h3>
+    <label>
+      Nom
+      <input type="text" id="modal-save-name" placeholder="Mon graphe">
+    </label>
+    <div class="modal-actions">
+      <button id="modal-save-confirm" class="btn-primary">Sauvegarder</button>
+      <button id="modal-save-cancel"  class="btn-ghost">Annuler</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/common.js"></script>
+<script src="/static/graphe.js"></script>
+</body>
+</html>
