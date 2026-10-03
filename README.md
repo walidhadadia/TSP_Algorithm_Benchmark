@@ -47,6 +47,15 @@ python run.py
 > Trouve automatiquement un port libre (à partir de 8000) et démarre le serveur.
 > L'URL s'affiche dans le terminal, par exemple : `http://127.0.0.1:8000`
 
+## Déploiement sur Vercel
+
+Le projet inclut un point d'entrée FastAPI (`api/index.py`) et une configuration Vercel (`vercel.json`). Pour le déployer :
+
+1. Poussez le projet sur GitHub, puis importez ce dépôt dans Vercel.
+2. Laissez Vercel détecter Python et déployer le projet. Aucun dossier de sortie frontend n'est nécessaire.
+
+Les pages et l'API sont servies par une fonction Python. Sur Vercel, SQLite utilise `/tmp` : les graphes enregistrés et l'historique ne sont pas persistants et peuvent disparaître entre deux exécutions ou instances. Pour conserver ces données en production, remplacez SQLite par une base de données hébergée.
+
 ---
 
 ## Stack technique
