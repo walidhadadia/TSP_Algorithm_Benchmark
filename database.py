@@ -5,15 +5,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Vercel functions can only write to /tmp. Ignore a configured project-local
+# path in production because the deployment filesystem is read-only.
 DEFAULT_DB_PATH = "/tmp/most-optimal-path.db" if os.getenv("VERCEL") else "data.db"
-
-# Vercel's function filesystem is read-only outside /tmp. A project-level
-# DB_PATH such as "data.db" must therefore be redirected to a writable path.
 configured_db_path = os.getenv("DB_PATH")
-if os.getenv("VERCEL") and configured_db_path and not os.path.isabs(configured_db_path):
-    DB_PATH = DEFAULT_DB_PATH
-else:
-    DB_PATH = configured_db_path or DEFAULT_DB_PATH
+DB_PATH = DEFAULT_DB_PATH if os.getenv("VERCEL") else (configured_db_path or DEFAULT_DB_PATH)
 
 
 def get_connection():
